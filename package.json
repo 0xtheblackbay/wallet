@@ -1,0 +1,20 @@
+{
+  "name": "wallet",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "restore": "nodemon -r dotenv/config restore.js",
+    "create": "nodemon -r dotenv/config create.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cross-env": "^7.0.3",
+    "debug": "^4.3.4",
+    "dotenv": "^16.0.1",
+    "ethers": "^5.7.2",
+    "nodemon": "^2.0.20"
+  }
+}
