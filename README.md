@@ -1,25 +1,32 @@
-##Introduction
+## Introduction
+
 This program allows you to create an Ethereum Virtual Machine (EVM) compatible public address, private key, and mnemonic. However, it requires basic development knowledge for setting up the environment to run the program. Once set up, you can use it to securely store and manage your Ethereum and other ERC-20 tokens.
 So instead of clreating your wallet online with metamask , now you will be able to create it offline
 
-##Disclaimer
+## Disclaimer
+
 This program is distributed in the hope that it will be useful, without warranty of any kind, either expressed or implied, including, but not limited to, the implied warranties of merchantability and fitness for a particular purpose.
 You use this program entirely at your own risk. The author will not be liable for any damages arising from the use of this program.
 
-##License
+## License
+
 This program is free for personal and commercial use. yo umay do whatever you want with it.
 
-##Credits
+## Credits
+
 Old time when search was done via Google
 
-##Requirements
+## Requirements
+
 Node.js 16 or greater
 Latest stable version can be downloaded here [Download Node.js](https://nodejs.org/en/download/)
 
-##How to install this program
+## How to install this program
+
 Run the following command to install the dependency : npm install
 
-##How to use this program :
+## How to use this program :
+
 Once installed , this program can be run offline and thus act as cold storage
 
 **Create:**
