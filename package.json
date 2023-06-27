@@ -3,18 +3,28 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "nodemonConfig": {
+    "ignore": [
+      "**/env/**",
+      "**/.env/**"
+    ],
+    "delay": 2500
+  },
   "scripts": {
-    "restore": "nodemon -r dotenv/config restore.js",
-    "create": "nodemon -r dotenv/config create.js",
+    "check-env": "node -e 'console.log(process.env)' | grep npm",
+    "generate-env": "secure-env .env -s ",
+    "dev-restore": "nodemon restore.js",
+    "dev-create": "nodemon create.js",
+    "restore": "node restore.js",
+    "create": "node create.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "cross-env": "^7.0.3",
-    "debug": "^4.3.4",
-    "dotenv": "^16.0.1",
     "ethers": "^5.7.2",
-    "nodemon": "^2.0.20"
+    "log4js": "^6.4.1",
+    "secure-env": "1.2.0",
+    "toml": "^3.0.0"
   }
 }

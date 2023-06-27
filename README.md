@@ -10,7 +10,7 @@ You use this program entirely at your own risk. The author will not be liable fo
 
 ## License
 
-This program is free for personal and commercial use. yo umay do whatever you want with it.
+This program is free for personal and commercial use. you may do whatever you want with it.
 
 ## Credits
 
@@ -21,35 +21,158 @@ Old time when search was done via Google
 Node.js 16 or greater
 Latest stable version can be downloaded here [Download Node.js](https://nodejs.org/en/download/)
 
-## How to install this program
+Tested with zero vulnerabilities on 27/06/2023 running on:
 
-Run the following command to install the dependency : npm install
-
-## How to use this program :
-
-Once installed , this program can be run offline and thus act as cold storage
-
-**Create:**
-Use this script to create new seed phrase and the first 3 accounts , **don't forget to save the seed phrase , without it you wont be able to recover your wallet and your funds**
-
-In the terminal run the follwoing command: npm run create
-
-This will give you the public address and the private key of the first 3 accounts
-if you want to get the 4th account then just replace 3 by 4 as the code below in create.js
-
-```node
-const numberOfAccounts = 4; // number of accounts to create
+```sh
+tbb@tbb:~/git/tbb/wallet> uname -a
+Linux tbb 5.14.21-150400.24.66-default
+tbb@tbb:~/git/tbb/wallet> npm --version
+8.19.4
+tbb@tbb:~/git/tbb/wallet> node -v
+v16.20.0
+tbb@tbb:~/git/tbb/wallet> 
 ```
 
-**Restore:**
-Use this script incase you already had your sed phrase and you want to restore your private keys or public addresses
-In restore.js file replace mnemonic value by your seed phrase and save the file
+## HowTo run this
 
-In the terminal run the follwoing command: npm run restore
+### install
 
-This will give you the public address and the private key of the first 3 accounts
-if you want to get the 4th account then just replace 3 by 4 as the code below in restore.js
+1. Run the following command to install the packages `npm i`
 
-```node
-const numberOfAccounts = 4; // number of accounts to restore
+```sh
+tbb@tbb:~/git/tbb/wallet> npm i
+
+added 59 packages, and audited 60 packages in 10s
+
+32 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+tbb@tbb:~/git/tbb/wallet> 
+```
+
+Once installed, this program can be run offline and thus act as cold storage to generate new addresses.
+
+### Create a new deterministic wallet
+
+Use this script to create new seed phrase. Remember to set the number of accounts you want to create in the config file.
+
+> **@EVERYONE**: don't forget to save the seed phrase from the output, without it you wont be able to recover your wallet and your funds.
+
+In the terminal run `npm run create` to generate a new deterministic wallet from a random seed.
+
+```sh
+tbb@tbb:~/git/tbb/wallet> npm run create
+
+> wallet@1.0.0 create
+> node create.js
+
+[2023-06-27T22:22:35.569] [DEBUG] create-script - loading configuration.
+[2023-06-27T22:22:35.710] [DEBUG] create-script - Generating a random wallet with 3 accounts...
+[2023-06-27T22:22:35.851] [DEBUG] create-script - Your seed phrase is: never gonna give you up never gonna lett you down never gonna run
+[2023-06-27T22:22:35.888] [DEBUG] create-script - Account 0 details:
+ Public Address: 0x6b4f2ca443abd97e5866257b4ee305a9bb31270e
+ Private Key: 0x6f024c51ca5d0b6568919e134353aaf1398ff090c92f6173f5ce0315fa266b93
+[2023-06-27T22:22:35.920] [DEBUG] create-script - Account 1 details:
+ Public Address: 0x14340f5034f948d6c87660509eade45761440356
+ Private Key: 0x795a84197ee01b9d50b40889bc5689e930a8839db3d43010e887ddeee643ccdc
+[2023-06-27T22:22:35.940] [DEBUG] create-script - Account 2 details:
+ Public Address: 0x9939f51ac0d9195cebf424dbf2df73b58c5b24c9
+ Private Key: 0x86cd9fbf8665526fa135df281810af38a356c1867dda5e4b01309ee3a9e0d56d
+tbb@tbb:~/git/tbb/wallet>
+```
+
+This will give you the public address and the private key of as many accounts as you defined in the [`.config`](#script-config) file.
+
+### Calculate account details from a mnemonic
+
+Use this script in case you already have generated your sed phrase and you want to calculate its related private keys or public addresses.
+
+1. Copy the env filefrom the `/` folder and change its name to .env.
+
+2. Replace the `your_seed_goes_here` text with the seed phrase you want to generate accounts for.
+
+3. Encrypt the file as recommended in [secure your .env file](#secure-your-environment)
+
+4. Run the following command: `tbb@tbb:~/git/tbb/wallet> npm run restore <YOUR_PASSWORD>` like in the example below:
+
+```sh
+tbb@tbb:~/git/tbb/wallet> npm run restore MY_PASSWORD
+
+> wallet@1.0.0 restore
+> node restore.js MY_PASSWORD
+
+[2023-06-27T22:37:59.248] [DEBUG] restore-script - loading configuration.
+[2023-06-27T22:37:59.253] [DEBUG] restore-script - loading secure environment.
+[2023-06-27T22:37:59.258] [DEBUG] restore-script - Your seed phrase is: never gonna give you up never gonna lett you down never gonna run
+[2023-06-27T22:37:59.258] [DEBUG] restore-script - Restoring 3 accounts...
+[2023-06-27T22:37:59.560] [DEBUG] restore-script - Account 0 details:
+ Public Address: 0x6b4f2ca443abd97e5866257b4ee305a9bb31270e
+ Private Key: 0x6f024c51ca5d0b6568919e134353aaf1398ff090c92f6173f5ce0315fa266b93
+[2023-06-27T22:22:35.920] [DEBUG] create-script - Account 1 details:
+ Public Address: 0x14340f5034f948d6c87660509eade45761440356
+ Private Key: 0x795a84197ee01b9d50b40889bc5689e930a8839db3d43010e887ddeee643ccdc
+[2023-06-27T22:22:35.940] [DEBUG] create-script - Account 2 details:
+ Public Address: 0x9939f51ac0d9195cebf424dbf2df73b58c5b24c9
+ Private Key: 0x86cd9fbf8665526fa135df281810af38a356c1867dda5e4b01309ee3a9e0d56d
+tbb@tbb:~/git/tbb/wallet> 
+```
+
+This will give you the public address and the private key of as many accounts as you defined in the [`.config`](#script-config) file.
+
+### script config
+
+The only required configuration is the number of accounts you want the scripts to handle. This is configured in the .config file made available within the repo.
+
+If you want to get, for instance, 4 accounts of that seed, then just replace 3 by 4 as the code below in `.config` file.
+
+```conf
+NUMBER_OF_ACCOUNTS=3 // number of accounts to restore
+```
+
+## secure your environment  
+
+The current project relies on an environment file to access `sensible data` like APY KEYS .
+
+Hence it is advised to develop following some good practises like distinguishing between prod and deveopment KEYS.
+
+As an additional measure, the code provided in this example runs using an encrypted version of the well-known `dot-env` implementation to encrypt your `.env` file and increase security.
+
+In order to encrypt your .env file (use the env file provided as template), proceed as follow: 
+
+1. ensure you have installed the project dependencies as per [How to run this](#howto-run-this).  
+
+2. copy `env` as `.env` and complete the required fields.  
+
+3. execute `npm run generate-env YOUR_PASSWORD`. 
+
+```sh  
+npm run generate-env YOUR_PASSWORD
+
+> wallet@1.0.0 generate-env  
+> secure-env .env -s YOUR_PASSWORD  
+
+Secure-env :  INFO The Environment file ".env" has been encrypted to ".env.enc".  
+Secure-env :  WARNING Make sure to delete ".env" for production use.  
+```  
+
+4. Remember to **delete** your original *.env* file when deploying on PRODUCTION environments. :)  
+
+## Folder contents
+
+```sh
+tbb@tbb:~/git/tbb/wallet> tree -a ./
+./
+├── .config
+├── create.js
+├── env
+├── .gitignore
+├── node_modules
+├── package.json
+├── README.md
+├── restore.js
+└── utils
+
+3 directories, 10 files
+tbb@tbb:~/git/tbb/wallet>
 ```
