@@ -163,16 +163,16 @@ Secure-env :  WARNING Make sure to delete ".env" for production use.
 ```sh
 tbb@tbb:~/git/tbb/wallet> tree -a ./
 ./
+├── utils
+│   └── secureEnv.js
 ├── .config
+├── .gitignore
 ├── create.js
 ├── env
-├── .gitignore
-├── node_modules
 ├── package.json
 ├── README.md
-├── restore.js
-└── utils
+└── restore.js
 
-3 directories, 10 files
+1 directory, 7 files
 tbb@tbb:~/git/tbb/wallet>
 ```
